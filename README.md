@@ -1,22 +1,29 @@
-# Workspace Intelligence Hub Portfolio Edition
+# Workspace Intelligence Hub — Portfolio Edition
 
-Workspace Intelligence Hub is a local-first FastAPI application for searching technical material, managing isolated customer workspaces, reviewing system structure, and comparing social and web analytics. This Portfolio Edition keeps the application architecture and automated tests while replacing operational material with synthetic examples.
+Workspace Intelligence Hubは、技術資料の検索、顧客ごとに分離されたワークスペースの管理、システム構成の確認、SNS・Web分析データの比較を行う、ローカル運用を前提としたFastAPIアプリケーションです。
 
-## Included capabilities
+このPortfolio Editionは、アプリケーションの構成と自動テストを維持しながら、実際の顧客情報・運用データ・認証情報を合成サンプルへ置き換えた公開版です。
 
-- Retrieval-augmented search with source citations and workspace isolation
-- Incremental document indexing for Markdown, PDF, Word, Excel, CSV, source code, and SQLite snapshots
-- Pre-index secret and personal-information detection
-- Local image metadata, face-label, and semantic-search workflows
-- Authentication, roles, audit logs, backups, schedules, and usage limits
-- Optional Meta, Instagram, YouTube, GA4, Google Business Profile, LINE, and CSV analytics connectors
-- Static source analysis with an offline Roslyn helper
+## 主な機能
 
-External integrations remain disabled until the operator supplies credentials in the ignored `.env` file. The repository contains no live credentials, customer exports, production databases, or private source documents.
+- 出典表示とワークスペース分離に対応したRAG検索
+- Markdown、PDF、Word、Excel、CSV、ソースコード、SQLiteスナップショットの差分インデックス
+- インデックス登録前の秘密情報・個人情報検出
+- ローカル画像のメタデータ管理、人物ラベル、セマンティック検索
+- 認証、権限管理、監査ログ、バックアップ、スケジュール、利用上限
+- Meta、Instagram、YouTube、GA4、Googleビジネスプロフィール、LINE、CSV分析との任意連携
+- オフラインのRoslynヘルパーによるソースコード静的解析
 
-## Quick start
+外部サービス連携は、利用者がGit管理対象外の`.env`へ認証情報を設定するまで無効です。このリポジトリには、実際の認証情報、顧客データ、運用データベース、非公開資料を収録していません。
 
-Requirements are Python 3.12 and Docker Desktop.
+## 動作環境
+
+- Python 3.12
+- Docker Desktop
+
+## 起動手順
+
+PowerShellで次のコマンドを実行します。
 
 ```powershell
 Copy-Item .env.example .env
@@ -27,21 +34,21 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m uvicorn app.main:app --reload
 ```
 
-Open `http://127.0.0.1:8000`. The first visit creates the local administrator. Use a password of at least 12 characters.
+起動後、`http://127.0.0.1:8000`を開きます。初回アクセス時にローカル管理者を作成します。パスワードは12文字以上で設定してください。
 
-The synthetic examples under `sample-data/` are safe to index. Do not point a public demonstration at production folders or production credentials.
+`sample-data/`には、安全にインデックス登録できる合成サンプルを収録しています。公開デモから実運用フォルダーや本番用認証情報を参照しないでください。
 
-## Verification
+## テスト
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -q
 ```
 
-The publication review and exclusions are documented in [SECURITY_PUBLICATION_REPORT.md](SECURITY_PUBLICATION_REPORT.md).
+公開前の検査内容、除外対象、残存リスクは[公開可否レポート](SECURITY_PUBLICATION_REPORT.md)に記録しています。
 
-## Security boundaries
+## セキュリティ上の境界
 
-- `.env`, `sources.yaml`, service-account files, private keys, databases, backups, uploads, model weights, and runtime logs are ignored.
-- API responses never return stored credential values.
-- Secret scanning is rule-based and cannot guarantee that every sensitive value will be detected.
-- A private repository remains the appropriate location for production configuration, customer material, and operational exports.
+- `.env`、`sources.yaml`、サービスアカウントファイル、秘密鍵、データベース、バックアップ、アップロード、モデル、実行ログはGit管理対象外です。
+- APIは保存済みの認証情報をレスポンスとして返しません。
+- 秘密情報検出はルールベースであり、すべての機密情報を検出できることを保証するものではありません。
+- 本番設定、顧客資料、運用データの保存にはPrivateリポジトリを使用してください。
