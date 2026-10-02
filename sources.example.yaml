@@ -1,0 +1,6 @@
+sources:
+  - id: synthetic-samples
+    path: 'sample-data'
+    read_only: true
+    enabled: true
+    workspace: workspace

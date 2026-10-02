@@ -1,0 +1,32 @@
+[
+  {
+    "id": "DEMO001",
+    "question": "The sample C sharp service posts properties to which path?",
+    "project": "sample-system",
+    "expected_answer": ["/sample-properties", "PostAsync"],
+    "expected_sources": ["PropertyService.cs"],
+    "category": "integration",
+    "priority": "high",
+    "notes": "Synthetic example only"
+  },
+  {
+    "id": "DEMO002",
+    "question": "Which REST route does the sample WordPress plugin register?",
+    "project": "sample-wordpress",
+    "expected_answer": ["sample/v1", "/properties"],
+    "expected_sources": ["plugin.php"],
+    "category": "api",
+    "priority": "medium",
+    "notes": "Synthetic example only"
+  },
+  {
+    "id": "DEMO003",
+    "question": "What table is defined in the sample database schema?",
+    "project": "sample-db",
+    "expected_answer": ["sample_properties"],
+    "expected_sources": ["schema.sql"],
+    "category": "database",
+    "priority": "medium",
+    "notes": "Synthetic example only"
+  }
+]

@@ -1,0 +1,13 @@
+default_action: deny
+projects:
+  sample-system: {enabled: true}
+  sample-wordpress: {enabled: true}
+  sample-db: {enabled: true}
+extensions: ['.cs', '.php', '.sql', '.md', '.txt', '.json', '.yaml', '.yml']
+paths:
+  - {pattern: 'sample-system/**', action: allow}
+  - {pattern: 'sample-wordpress/**', action: allow}
+  - {pattern: 'sample-db/**', action: allow}
+  - {pattern: '**', action: deny}
+security:
+  high_action: skip
